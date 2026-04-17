@@ -29,6 +29,8 @@ export interface SchemaPropertyEditorProps {
   onRequiredChange: (required: boolean) => void;
   onSchemaChange: (schema: ObjectJSONSchema) => void;
   depth?: number;
+  onAddEnum?: (value: string | number) => void;
+  onDeleteEnum?: (value: string | number) => void;
 }
 
 export const SchemaPropertyEditor: React.FC<SchemaPropertyEditorProps> = ({
@@ -42,6 +44,8 @@ export const SchemaPropertyEditor: React.FC<SchemaPropertyEditorProps> = ({
   onRequiredChange,
   onSchemaChange,
   depth = 0,
+  onAddEnum,
+  onDeleteEnum,
 }) => {
   const t = useTranslation();
   const [expanded, setExpanded] = useState(false);
@@ -255,6 +259,8 @@ export const SchemaPropertyEditor: React.FC<SchemaPropertyEditorProps> = ({
             validationNode={validationNode}
             onChange={handleSchemaUpdate}
             depth={depth + 1}
+            onAddEnum={onAddEnum}
+            onDeleteEnum={onDeleteEnum}
           />
         </div>
       )}

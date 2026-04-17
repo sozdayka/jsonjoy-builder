@@ -18,6 +18,8 @@ export interface TypeEditorProps {
   validationNode: ValidationTreeNode | undefined;
   onChange: (schema: ObjectJSONSchema) => void;
   depth?: number;
+  onAddEnum?: (value: string | number) => void;
+  onDeleteEnum?: (value: string | number) => void;
 }
 
 const TypeEditor: React.FC<TypeEditorProps> = ({
@@ -26,6 +28,8 @@ const TypeEditor: React.FC<TypeEditorProps> = ({
   onChange,
   depth = 0,
   readOnly = false,
+  onAddEnum,
+  onDeleteEnum,
 }) => {
   const t = useTranslation();
   const type = getEditorType(schema);
@@ -39,6 +43,8 @@ const TypeEditor: React.FC<TypeEditorProps> = ({
           onChange={onChange}
           depth={depth}
           validationNode={validationNode}
+          onAddEnum={onAddEnum}
+          onDeleteEnum={onDeleteEnum}
         />
       )}
       {type === "number" && (
@@ -48,6 +54,8 @@ const TypeEditor: React.FC<TypeEditorProps> = ({
           onChange={onChange}
           depth={depth}
           validationNode={validationNode}
+          onAddEnum={onAddEnum}
+          onDeleteEnum={onDeleteEnum}
         />
       )}
       {type === "integer" && (
@@ -58,6 +66,8 @@ const TypeEditor: React.FC<TypeEditorProps> = ({
           depth={depth}
           validationNode={validationNode}
           integer
+          onAddEnum={onAddEnum}
+          onDeleteEnum={onDeleteEnum}
         />
       )}
       {type === "boolean" && (

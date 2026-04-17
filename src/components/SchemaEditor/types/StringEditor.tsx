@@ -25,6 +25,8 @@ const StringEditor: React.FC<TypeEditorProps> = ({
   validationNode,
   onChange,
   readOnly = false,
+  onAddEnum,
+  onDeleteEnum,
 }) => {
   const t = useTranslation();
   const [enumValue, setEnumValue] = useState("");
@@ -72,6 +74,7 @@ const StringEditor: React.FC<TypeEditorProps> = ({
 
     if (!enumValues.includes(enumValue)) {
       handleValidationChange("enum", [...enumValues, enumValue]);
+      onAddEnum?.(enumValue);
     }
 
     setEnumValue("");
@@ -79,6 +82,7 @@ const StringEditor: React.FC<TypeEditorProps> = ({
 
   // Handle removing enum value
   const handleRemoveEnumValue = (index: number) => {
+    const removed = enumValues[index];
     const newEnumValues = [...enumValues];
     newEnumValues.splice(index, 1);
 
@@ -98,6 +102,8 @@ const StringEditor: React.FC<TypeEditorProps> = ({
     } else {
       handleValidationChange("enum", newEnumValues);
     }
+
+    onDeleteEnum?.(removed);
   };
 
   const minMaxError = useMemo(
