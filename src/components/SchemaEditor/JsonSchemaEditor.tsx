@@ -23,6 +23,8 @@ export interface JsonSchemaEditorProps {
   readOnly: boolean;
   setSchema?: (schema: JSONSchema) => void;
   className?: string;
+  onAddEnum?: (value: string | number) => void;
+  onDeleteEnum?: (value: string | number) => void;
 }
 
 /** @public */
@@ -31,6 +33,8 @@ const JsonSchemaEditor: FC<JsonSchemaEditorProps> = ({
   readOnly = false,
   setSchema,
   className,
+  onAddEnum,
+  onDeleteEnum,
 }) => {
   // Handle schema changes and propagate to parent if needed
   const handleSchemaChange = (newSchema: JSONSchema) => {
@@ -124,6 +128,8 @@ const JsonSchemaEditor: FC<JsonSchemaEditorProps> = ({
               readOnly={readOnly}
               schema={schema}
               onChange={handleSchemaChange}
+              onAddEnum={onAddEnum}
+              onDeleteEnum={onDeleteEnum}
             />
           </TabsContent>
 
@@ -170,6 +176,8 @@ const JsonSchemaEditor: FC<JsonSchemaEditorProps> = ({
               readOnly={readOnly}
               schema={schema}
               onChange={handleSchemaChange}
+              onAddEnum={onAddEnum}
+              onDeleteEnum={onDeleteEnum}
             />
           </div>
           {/** biome-ignore lint/a11y/noStaticElementInteractions: What exactly does this div do? */}

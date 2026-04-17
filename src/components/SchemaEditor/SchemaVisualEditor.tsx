@@ -16,6 +16,8 @@ export interface SchemaVisualEditorProps {
   schema: JSONSchema;
   readOnly: boolean;
   onChange: (schema: JSONSchema) => void;
+  onAddEnum?: (value: string | number) => void;
+  onDeleteEnum?: (value: string | number) => void;
 }
 
 /** @public */
@@ -23,6 +25,8 @@ const SchemaVisualEditor: FC<SchemaVisualEditorProps> = ({
   schema,
   onChange,
   readOnly = false,
+  onAddEnum,
+  onDeleteEnum,
 }) => {
   const t = useTranslation();
   // Handle adding a top-level field
@@ -128,6 +132,8 @@ const SchemaVisualEditor: FC<SchemaVisualEditorProps> = ({
             onAddField={handleAddField}
             onEditField={handleEditField}
             onDeleteField={handleDeleteField}
+            onAddEnum={onAddEnum}
+            onDeleteEnum={onDeleteEnum}
           />
         )}
       </div>

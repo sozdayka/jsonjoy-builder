@@ -29,6 +29,8 @@ const NumberEditor: React.FC<NumberEditorProps> = ({
   onChange,
   integer = false,
   readOnly = false,
+  onAddEnum,
+  onDeleteEnum,
 }) => {
   const [enumValue, setEnumValue] = useState("");
   const t = useTranslation();
@@ -154,6 +156,7 @@ const NumberEditor: React.FC<NumberEditorProps> = ({
 
     if (!enumValues.includes(validValue)) {
       handleValidationChange("enum", [...enumValues, validValue]);
+      onAddEnum?.(validValue);
     }
 
     setEnumValue("");
@@ -161,6 +164,7 @@ const NumberEditor: React.FC<NumberEditorProps> = ({
 
   // Handle removing enum value
   const handleRemoveEnumValue = (index: number) => {
+    const removed = enumValues[index];
     const newEnumValues = [...enumValues];
     newEnumValues.splice(index, 1);
 
@@ -170,6 +174,8 @@ const NumberEditor: React.FC<NumberEditorProps> = ({
     } else {
       handleValidationChange("enum", newEnumValues);
     }
+
+    onDeleteEnum?.(removed);
   };
 
   const minMaxError = useMemo(

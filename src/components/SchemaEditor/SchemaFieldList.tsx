@@ -17,6 +17,8 @@ interface SchemaFieldListProps {
   onAddField: (newField: NewField) => void;
   onEditField: (name: string, updatedField: NewField) => void;
   onDeleteField: (name: string) => void;
+  onAddEnum?: (value: string | number) => void;
+  onDeleteEnum?: (value: string | number) => void;
 }
 
 const SchemaFieldList: FC<SchemaFieldListProps> = ({
@@ -24,6 +26,8 @@ const SchemaFieldList: FC<SchemaFieldListProps> = ({
   onEditField,
   onDeleteField,
   readOnly = false,
+  onAddEnum,
+  onDeleteEnum,
 }) => {
   const t = useTranslation();
 
@@ -141,6 +145,8 @@ const SchemaFieldList: FC<SchemaFieldListProps> = ({
           }
           onSchemaChange={(schema) => handleSchemaChange(property.name, schema)}
           readOnly={readOnly}
+          onAddEnum={onAddEnum}
+          onDeleteEnum={onDeleteEnum}
         />
       ))}
     </div>
