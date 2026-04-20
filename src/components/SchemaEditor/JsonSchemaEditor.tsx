@@ -1,32 +1,32 @@
-import { Maximize2 } from "lucide-react"
+import { Maximize2 } from "lucide-react";
 import {
   type FC,
   type MouseEvent as ReactMouseEvent,
   useRef,
   useState,
-} from "react"
+} from "react";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "../../components/ui/tabs.tsx"
-import { useTranslation } from "../../hooks/use-translation.ts"
-import { cn } from "../../lib/utils.ts"
-import type { JSONSchema } from "../../types/jsonSchema.ts"
-import JsonSchemaVisualizer from "./JsonSchemaVisualizer.tsx"
-import SchemaVisualEditor from "./SchemaVisualEditor.tsx"
-import type { EnumChangeContext } from "./TypeEditor.tsx"
+} from "../../components/ui/tabs.tsx";
+import { useTranslation } from "../../hooks/use-translation.ts";
+import { cn } from "../../lib/utils.ts";
+import type { JSONSchema } from "../../types/jsonSchema.ts";
+import JsonSchemaVisualizer from "./JsonSchemaVisualizer.tsx";
+import SchemaVisualEditor from "./SchemaVisualEditor.tsx";
+import type { EnumChangeContext } from "./TypeEditor.tsx";
 
 /** @public */
 export interface JsonSchemaEditorProps {
-  schema?: JSONSchema
-  readOnly: boolean
-  setSchema?: (schema: JSONSchema) => void
-  onAddEnum?: (ctx: EnumChangeContext) => void
-  onDeleteEnum?: (ctx: EnumChangeContext) => void
-  className?: string
-  autoFocus?: boolean
+  schema?: JSONSchema;
+  readOnly: boolean;
+  setSchema?: (schema: JSONSchema) => void;
+  onAddEnum?: (ctx: EnumChangeContext) => void;
+  onDeleteEnum?: (ctx: EnumChangeContext) => void;
+  className?: string;
+  autoFocus?: boolean;
 }
 
 /** @public */
@@ -41,50 +41,50 @@ const JsonSchemaEditor: FC<JsonSchemaEditorProps> = ({
 }) => {
   // Handle schema changes and propagate to parent if needed
   const handleSchemaChange = (newSchema: JSONSchema) => {
-    setSchema(newSchema)
-  }
+    setSchema(newSchema);
+  };
 
-  const t = useTranslation()
+  const t = useTranslation();
 
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  const [leftPanelWidth, setLeftPanelWidth] = useState(50) // percentage
-  const resizeRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isDraggingRef = useRef(false)
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [leftPanelWidth, setLeftPanelWidth] = useState(50); // percentage
+  const resizeRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
 
   const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen)
-  }
+    setIsFullscreen(!isFullscreen);
+  };
 
   const fullscreenClass = isFullscreen
     ? "fixed inset-0 z-50 bg-background"
-    : ""
+    : "";
 
   const handleMouseDown = (e: ReactMouseEvent) => {
-    e.preventDefault()
-    isDraggingRef.current = true
-    document.addEventListener("mousemove", handleMouseMove)
-    document.addEventListener("mouseup", handleMouseUp)
-  }
+    e.preventDefault();
+    isDraggingRef.current = true;
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
 
   const handleMouseMove = (e: MouseEvent) => {
-    if (!isDraggingRef.current || !containerRef.current) return
+    if (!isDraggingRef.current || !containerRef.current) return;
 
-    const containerRect = containerRef.current.getBoundingClientRect()
+    const containerRect = containerRef.current.getBoundingClientRect();
     const newWidth =
-      ((e.clientX - containerRect.left) / containerRect.width) * 100
+      ((e.clientX - containerRect.left) / containerRect.width) * 100;
 
     // Limit the minimum and maximum width
     if (newWidth >= 20 && newWidth <= 80) {
-      setLeftPanelWidth(newWidth)
+      setLeftPanelWidth(newWidth);
     }
-  }
+  };
 
   const handleMouseUp = () => {
-    isDraggingRef.current = false
-    document.removeEventListener("mousemove", handleMouseMove)
-    document.removeEventListener("mouseup", handleMouseUp)
-  }
+    isDraggingRef.current = false;
+    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("mouseup", handleMouseUp);
+  };
 
   return (
     <div
@@ -205,7 +205,7 @@ const JsonSchemaEditor: FC<JsonSchemaEditorProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default JsonSchemaEditor
+export default JsonSchemaEditor;

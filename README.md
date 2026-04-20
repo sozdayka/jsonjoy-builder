@@ -1,5 +1,7 @@
 # JSON Schema Builder
 
+*This is a fork of [lovasoa/jsonjoy-builder](https://github.com/lovasoa/jsonjoy-builder).*
+
 [![image](https://github.com/user-attachments/assets/6be1cecf-e0d9-4597-ab04-7124e37e332d)](https://json.ophir.dev)
 
 A modern, React-based visual JSON Schema editor for creating and manipulating JSON Schema definitions with an intuitive interface.

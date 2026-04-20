@@ -1,10 +1,10 @@
 {
-  "name": "jsonjoy-builder",
+  "name": "@sozdayka/jsonjoy-builder",
   "license": "MIT",
   "description": "Visual JSON Schema editor for creating and manipulating JSON Schema definitions with an intuitive interface.",
   "author": {
-    "name": "Ophir LOJKINE",
-    "url": "http://ophir.dev/"
+    "name": "Ihor Rosliakov",
+    "url": "https://github.com/sozdayka"
   },
   "keywords": [
     "json",
@@ -14,12 +14,12 @@
     "react"
   ],
   "private": false,
-  "version": "0.4.0",
+  "version": "0.3.7",
   "type": "module",
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lovasoa/jsonjoy-builder.git"
+    "url": "git+https://github.com/sozdayka/jsonjoy-builder.git"
   },
   "files": [
     "dist",
