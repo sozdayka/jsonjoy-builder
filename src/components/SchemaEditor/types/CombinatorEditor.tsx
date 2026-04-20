@@ -1,4 +1,4 @@
-import { CirclePlus, X } from "lucide-react";
+import { ChevronDown, ChevronRight, CirclePlus, X } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "../../../hooks/use-translation.ts";
 import type { Translation } from "../../../i18n/translation-keys.ts";
@@ -178,11 +178,16 @@ const CombinatorEditor: React.FC<CombinatorEditorProps> = ({
                 <div className="flex items-center gap-2 px-3 py-2">
                   <button
                     type="button"
-                    className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors min-w-[72px] text-left"
+                    className="flex items-center gap-2 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors min-w-[72px] text-left"
                     onClick={() =>
                       setExpandedId(isExpanded ? null : (id ?? null))
                     }
                   >
+                    {isExpanded ? (
+                      <ChevronDown size={18} />
+                    ) : (
+                      <ChevronRight size={18} />
+                    )}
                     {strings.itemLabel} {index + 1}
                   </button>
 
